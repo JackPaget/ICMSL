@@ -1,0 +1,58 @@
+#
+# This file MUST be edited with the 'visudo' command as root.
+#
+# Please consider adding local content in /etc/sudoers.d/ instead of
+# directly modifying this file.
+#
+# See the man page for details on how to write a sudoers file.
+#
+Defaults	env_reset
+Defaults	mail_badpass
+Defaults	secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+# Host alias specification
+
+# User alias specification
+
+# Cmnd alias specification
+
+# User privilege specification
+root	ALL=(ALL:ALL) ALL
+
+# Allow members of group sudo to execute any command
+%sudo	ALL=(ALL:ALL) ALL
+
+# See sudoers(5) for more information on "#include" directives:
+
+#includedir /etc/sudoers.d
+pi ALL=(ALL) NOPASSWD: ALL
+pi1 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot
+pi2 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/usr/bin/acquire_data_ang,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot
+pi3 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot
+pi4 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot
+pi5 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot
+pi6 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot
+pi7 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot
+pi8 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot
+pi9 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot
+pi10 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot
+pi11 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot
+pi12 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot
+pi13 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot
+pi14 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot
+pi15 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot
+pi16 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot
+pi17 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot
+pi18 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot
+pi19 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot
+pi20 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot
+pi21 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot
+pi22 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot
+pi23 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot
+pi24 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot
+pi25 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot
+pi26 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot
+pi27 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot
+pi28 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot
+pi29 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot
+pi30 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot

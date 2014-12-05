@@ -1,0 +1,18 @@
+#! /bin/bash
+
+############################################################################
+#                                                                          #
+# Measurement Science Laboratory 2014 (Y1 Chemistry)                       #
+# Script to allow the python acquistion to be run as sudo for V dark       #
+# Lab Co-ordinator: joshua.edel@imperial.ac.uk                             #
+#                                                                          #
+# $1 username of the pi 												   #
+# $2 file name															   #											
+# 																		   #
+############################################################################
+
+python /adc-chip/dark_count.py
+
+################## Files appended as sudo so change ownership ##############
+
+chown $1 $2

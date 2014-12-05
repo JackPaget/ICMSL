@@ -1,0 +1,23 @@
+#! /bin/bash
+
+############################################################################
+#                                                                          #
+# Measurement Science Laboratory 2014 (Y1 Chemistry)                       #
+# Script to allow the python acquistion to be run as sudo                  #
+# Lab Co-ordinator: joshua.edel@imperial.ac.uk                             #
+#                                                                          #
+# $1 time for acquistion												   #
+# $2 file name															   #
+# $3 number of values being tests									       #
+# $4 type of experiment													   #
+# $5 label for x-axis													   #
+# $6 username of the current pi											   #
+# $7 dark voltage														   #
+# 																		   #
+############################################################################
+
+python /adc-chip/continuous_read_adc.py $1 $2 $3 $4 $5 $7
+
+################## Files appended as sudo so change ownership ##############
+
+chown $6 $2

@@ -1,0 +1,277 @@
+#! /bin/bash
+
+############################################################################
+#                                                                          #
+# Measurement Science Laboratory 2014 (Y1 Chemistry)                       #
+# Master script                                                            #
+# Lab Co-ordinator: joshua.edel@imperial.ac.uk                             #
+#                                                                          #
+############################################################################
+
+###################### Define initial variables ############################
+
+runs=
+samples=250
+filename=
+pinum=$(id -u -n)
+now=$(date)
+sloc="/home/$pinum/scripts"
+type=
+xlab=
+
+############################################################################
+#                                                                          #
+#       Functions for each experiment                                      #
+#                                                                          #
+############################################################################
+
+############## Usage function for non-interactive mode  ####################
+
+function usage
+{
+        echo "usage: pi_spectroscopy [[[-f filename of output | -o angle/concentration ]] | [-n number of concentrations [5]] [-s samples [250]] | [-h]]"
+}
+
+#################### Collect information from users ##########################
+
+function run_info
+{
+
+        count=1
+        while [ "$runs" == "" ]
+        do  
+        echo "How many $xtype will you  be measuring?"
+        read runs
+                if [ "$count" -ge 3 ]; then
+                        echo "Giving up ... please try again and enter a the number of $xtype you plan to run!"
+                        exit
+                fi
+
+        count=$(( count+1 ))
+        done
+        clear
+        echo "Your results run will be saved to $filename."
+        echo "The details are:"
+        echo " number of $xtype tested: $runs "
+        echo "  output file:  $filename "
+        echo "Continue? [y/n]"
+
+        continue=
+
+        read continue
+
+        if [ "$continue" == "n" -o "$continue" == "" ]; then
+                exit
+        fi
+
+}
+
+############## Check the filename is properly defined  #######################
+
+function read_filename
+{
+        if [ "$filename" != "" ]; then
+                if ( echo "$filename" | grep -q ' ' ); then
+                        echo "Filename is invalid, it must not contain spaces!"
+                        filename=
+                fi
+        fi
+
+        count=1
+        while [ "$filename" == "" ]
+        do
+                echo "Please enter a valid filename for the output:"
+                read filename
+                
+                if ( echo "$filename" | grep -q ' ' ); then
+                        echo "Filename is invalid, it must not contain spaces!"
+                        exit 1
+                fi
+
+                count=$(( count+1 ))
+        done
+}
+
+############### Check that an experiment type is assigned ####################
+
+function assign_type
+{
+
+        if [ "$type" == "" ]; then
+                echo "Are you testing angle or concentration?"
+                echo "Enter A for angle, C for concentration or T for time resolved:"
+                read type
+        fi
+     
+
+        if [ "$type" == "A" -o "$type" == "a" ]; then
+                type="A"
+                xlab="Wavelength"
+                xtype="angles"
+        elif [ "$type" == "C" -o "$type" == "c" ]; then
+                type="C"
+                xlab="Concentration"
+                xtype="concentrations"
+        elif [ "$type" == "T" -o "$type" == "t" ]; then
+                type="T"
+                xlab="Time"
+                xtype="timer"
+        else 
+                echo "Invalid option - measurement type not specified or not valid!"
+                exit 1
+        fi
+}
+
+############################################################################
+#                                                                          #
+#       Functions for each experiment                                      #
+#                                                                          #
+############################################################################
+
+function conc
+{
+
+filename=$PWD"/"$filename"_conc.dat"
+run_info
+echo -e "Concentration \t Absorbance \t Mean V \t STD V " > $filename
+
+
+}
+
+function angle
+{
+
+filename=$PWD"/"$filename"_angl.dat"
+run_info
+echo -e " Wavelength (nm) \t Absorbance \t Angle  \t Mean VS \t STD VS \t Mean V0 \t STD V0 " > $filename
+
+}
+
+function timeres
+{
+
+        filename=$PWD"/"$filename"_timeres.dat"
+        echo "How long would you like to follow the reaction for (mins)?"
+        read runtime
+        echo "Your results run will be saved to $filename."
+        echo "The details are:"
+        echo "Study time: $runtime mins"
+        echo "Continue? [y/n]"
+
+        continue=
+
+        read continue
+
+        if [ "$continue" == "n" -o "$continue" == "" ]; then
+                exit
+        fi
+
+        echo -e "Time S \t Absorbance \t Mean V \t Std V " > $filename
+
+        runs=$(( $runtime*2 ))
+}
+
+############################################################################
+#                                                                          #
+#       Read options from CLI if defined                                   #
+#                                                                          #
+############################################################################
+
+while [ "$1" != "" ]; do
+case $1 in
+        -f | --file )   shift
+                        filename=$1
+                        ;;
+        -n | --runs )   shift
+                        runs=$1
+                        ;;
+        -s | --samples )        shift
+                        samples=$1
+                        ;;
+        -h | --h )      usage
+                        exit
+                        ;;
+	-o | --opt )	shift
+			type=$1
+			;;
+        * )             usage
+                        exit
+esac
+        shift
+done
+
+############################################################################
+#                                                                          #
+#       Run the experiment                                                 #
+#                                                                          #
+############################################################################
+
+timeIn=$(($samples/250))
+
+assign_type
+read_filename
+
+############################################################################
+#                                                                          #
+#      Before measuring results check for dark count                       #
+#                                                                          #
+############################################################################
+
+if [ -f /spectroscopy/$pinum/darkcount ]
+ 	vdark=$((cat echo /spectroscopy/$pinum/darkcount))
+else 
+        touch /spectroscopy/$pinum/darkcount
+	sudo /usr/bin/dark-count $pinum /spectroscopy/$pinum/darkcount
+        vdark=$((cat echo /spectroscopy/$pinum/darkcount))
+fi
+
+############################################################################
+#                                                                          #
+#       Run appropriate experiment                                         #
+#                                                                          #
+############################################################################
+
+if [ $type == "A" ]; then 
+        angle
+elif [ $type == "C" ]; then
+        conc
+elif [ $type == "T" ]; then
+        timeres
+else 
+        exit 1
+fi 
+
+sudo /usr/bin/acquire_data $timeIn $filename $runs $xtype $xlab $pinum $vdark
+
+clear
+
+############################################################################
+#                                                                          #
+#       Copy data to IC H drives if setup                                  #
+#                                                                          #
+############################################################################
+
+if [ -f /spectroscopy/$pinum/copy-data ]; then
+        sudo /spectroscopy/$pinum/copy-data $filename
+fi
+
+############################################################################
+#                                                                          #
+#       Analyse concentration data if needed                               #
+#                                                                          #
+############################################################################
+
+if [ $type == "C" ]; then
+	analyse="N"
+	echo "Do you want to analyse the data now? [y/N]"
+	read analyse
+		if [ $analyse == "y" ]; then
+        		echo "The script for this analysis can be found in /home/$pinum/scripts/spectro_analysis.py"
+#			python /home/$pinum/scripts/spectro_analysis.py $filename
+		fi
+fi
+
+############################################################################
+
+echo "Finished"
+

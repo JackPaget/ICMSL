@@ -1,0 +1,74 @@
+#! /bin/bash
+
+############################################################################
+#                                                                          #
+# Measurement Science Laboratory 2014 (Y1 Chemistry)                       #
+# Script to mount the IC H drives must be run as root                      #
+# Lab Co-ordinator: joshua.edel@imperial.ac.uk                             #
+#                                                                          #
+############################################################################
+
+##################### Get CLI options and assign  ##########################
+
+pinum=$1
+
+if [ "$(id -u)" != "0" ]; then
+   echo "This script must be run as root - use sudo setup-experiment" 1>&2
+   exit 1
+fi
+
+##################### Writing errors to a file  ##############################
+
+# remove old error files so the script doesn't get confused
+
+rm err_file_setup 2> /dev/null
+
+####################### Mount the scripts   #################################
+
+
+echo "These operations will allow your results to be copied to your Imperial College home directory. Results will also be stored locally at /home/studentpi/<filename> and can be copied to a USB-stick or e-mailled."
+echo " "
+
+echo "How many people are in your group?"
+	read students
+
+n=1
+
+while [ $n -le $students ]
+do
+	clear
+	echo "Please enter the Imperial College Login for Student $n:"
+	read usern
+	echo " "
+	echo "Please enter icnas# of $usern's home directory:"
+	read usernas
+	echo " "
+	echo "Mounting $usern's home directory, will need $usern's Imperial College password."
+	# Make a script so that students can copy their data to the home directory as a sudo user
+	mkdir -p /spectroscopy/$pinum/student$n
+	mount -t cifs -o username=$usern //icnas$usernas.cc.ic.ac.uk/$usern /spectroscopy/$pinum/student1 2>> err_file_setup
+	mkdir -p /spectroscopy/$pinum/student$n/Measurement-Science-Lab
+	touch /spectroscopy/$pinum/copy-data
+	echo "cp" '$1' "/spectroscopy/$pinum/student$n/Measurement-Science-Lab" >> /spectroscopy/$pinum/copy-data
+	echo " "
+	n=$(( n+1 ))
+done
+
+# Make the script executable so the files will copy 
+
+chmod +x /spectroscopy/$pinum/copy-data
+clear
+if [  -s err_file_setup ]; then
+	# throw out any errors 
+    echo "There were some errors, which are displayed below:"
+    echo " "
+    more err_file_setup 
+    echo " "
+    echo "Try to correct these errors before you start, if you struggle ask a demonstrator"
+    echo "The error file is called err_file_setup"
+else 
+    echo "Directories mounted, you are ready to start!"
+fi
+
+
+

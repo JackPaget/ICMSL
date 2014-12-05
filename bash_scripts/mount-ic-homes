@@ -1,0 +1,15 @@
+#! /bin/bash
+
+############################################################################
+#                                                                          #
+# Measurement Science Laboratory 2014 (Y1 Chemistry)                       #
+# Script to allow students to mount the IC H drives                        #
+# Lab Co-ordinator: joshua.edel@imperial.ac.uk                             #
+#                                                                          #
+############################################################################
+
+################## Get the Pis name and sudo to mount ######################
+
+pinum=$(id -u -n)
+
+sudo setup-experiment $pinum

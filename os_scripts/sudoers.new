@@ -1,0 +1,58 @@
+#
+# This file MUST be edited with the 'visudo' command as root.
+#
+# Please consider adding local content in /etc/sudoers.d/ instead of
+# directly modifying this file.
+#
+# See the man page for details on how to write a sudoers file.
+#
+Defaults	env_reset
+Defaults	mail_badpass
+Defaults	secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+# Host alias specification
+
+# User alias specification
+
+# Cmnd alias specification
+
+# User privilege specification
+root	ALL=(ALL:ALL) ALL
+
+# Allow members of group sudo to execute any command
+%sudo	ALL=(ALL:ALL) ALL
+
+# See sudoers(5) for more information on "#include" directives:
+
+#includedir /etc/sudoers.d
+pi ALL=(ALL) NOPASSWD: ALL
+pi1 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/umount,/sbin/shutdown,/sbin/reboot,/bin/darkcount,/spectroscopy/pi1/copy-data
+pi2 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot,/bin/darkcount,/spectroscopy/pi2/copy-data
+pi3 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot,/bin/darkcount,/spectroscopy/pi3/copy-data
+pi4 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot,/bin/darkcount,/spectroscopy/pi4/copy-data
+pi5 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot,/bin/darkcount,/spectroscopy/pi5/copy-data
+pi6 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot,/bin/darkcount,/spectroscopy/pi6/copy-data
+pi7 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot,/bin/darkcount,/spectroscopy/pi7/copy-data
+pi8 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot,/bin/darkcount,/spectroscopy/pi8/copy-data
+pi9 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot,/bin/darkcount,/spectroscopy/pi9/copy-data
+pi10 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot,/bin/darkcount,/spectroscopy/pi10/copy-data
+pi11 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot,/bin/darkcount,/spectroscopy/pi11/copy-data
+pi12 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot,/bin/darkcount,/spectroscopy/pi12/copy-data
+pi13 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot,/bin/darkcount,/spectroscopy/pi13/copy-data
+pi14 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot,/bin/darkcount,/spectroscopy/pi14/copy-data
+pi15 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot,/bin/darkcount,/spectroscopy/pi15/copy-data
+pi16 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot,/bin/darkcount,/spectroscopy/pi16/copy-data
+pi17 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot,/bin/darkcount,/spectroscopy/pi17/copy-data
+pi18 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot,/bin/darkcount,/spectroscopy/pi18/copy-data
+pi19 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot,/bin/darkcount,/spectroscopy/pi19/copy-data
+pi20 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot,/bin/darkcount,/spectroscopy/pi20/copy-data
+pi21 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot,/bin/darkcount,/spectroscopy/pi21/copy-data
+pi22 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot,/bin/darkcount,/spectroscopy/pi22/copy-data
+pi23 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot,/bin/darkcount,/spectroscopy/pi23/copy-data
+pi24 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot,/bin/darkcount,/spectroscopy/pi24/copy-data
+pi25 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot,/bin/darkcount,/spectroscopy/pi25/copy-data
+pi26 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot,/bin/darkcount,/spectroscopy/pi26/copy-data
+pi27 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot,/bin/darkcount,/spectroscopy/pi27/copy-data
+pi28 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot,/bin/darkcount,/spectroscopy/pi28/copy-data
+pi29 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot,/bin/darkcount,/spectroscopy/pi29/copy-data
+pi30 ALL=(ALL) NOPASSWD:/usr/bin/acquire_data,/bin/setup-experiment,/bin/cp,/bin/umount,/sbin/shutdown,/sbin/reboot,/bin/darkcount,/spectroscopy/pi30/copy-data
